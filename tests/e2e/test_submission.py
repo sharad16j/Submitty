@@ -122,7 +122,7 @@ class TestSubmission(BaseTestCase):
             if select.options[i].text.endswith('GRADE THIS VERSION'):
                 select_idx = i
         self.assertGreater(select_idx, -1)
-        select.select_by_visible_text(select.options[select_idx])
+        select.select_by_visible_text(select.options[select_idx].text)
 
         version_xpath = "//div[@class='content']/select/option[@value='{}' and @selected and substring(text(), string-length(text())-17)='GRADE THIS VERSION']".format(new_version)
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, version_xpath)))
